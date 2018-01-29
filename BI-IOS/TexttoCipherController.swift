@@ -28,10 +28,14 @@ class TexttoCipherController: UIViewController, CLLocationManagerDelegate, MKMap
         super.loadView()
         view.backgroundColor = .white
         
-        let sampleTextField = UITextView(frame: CGRect(x: 20, y: 30, width: self.view.frame.width - 40, height: 100))
+        let enterText = UILabel(frame: CGRect(x: 20, y: 20, width: self.view.frame.width - 40, height: 30))
+        enterText.text = "Enter your text here:"
+        view.addSubview(enterText)
+        
+        let sampleTextField = UITextView(frame: CGRect(x: 20, y: 50, width: self.view.frame.width - 40, height: (self.view.frame.height/2) - 100))
         //sampleTextField.font = UIFont.systemFont(ofSize: 15)
         //sampleTextField.borderStyle = UITextBorderStyle.roundedRect
-        sampleTextField.layer.borderColor = UIColor.black.cgColor  
+        sampleTextField.layer.borderColor = UIColor.gray.cgColor
         sampleTextField.layer.borderWidth = 1.0
         sampleTextField.layer.cornerRadius = 5.0
         sampleTextField.textAlignment = NSTextAlignment.justified

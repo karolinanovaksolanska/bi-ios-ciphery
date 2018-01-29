@@ -12,7 +12,7 @@ class KeyboardViewController: UIInputViewController {
 
     @IBOutlet var nextKeyboardButton: UIButton!
     var hebrewView: UIView!
-    
+   
     override func updateViewConstraints() {
         super.updateViewConstraints()
         
@@ -54,15 +54,25 @@ class KeyboardViewController: UIInputViewController {
             fourthRow.addSubview(button)
         }
         
+        let buttons5Titles = ["----", "< Delete"]
+        let buttons5 = createButtonSpaceAndDelete(titles: buttons5Titles)
+        let fifthRow = UIView(frame: CGRect(x: 0, y: 160, width: 320, height: 40))
+        
+        for button in buttons5 {
+            fifthRow.addSubview(button)
+        }
+        
         self.view.addSubview(topRow)
         self.view.addSubview(secondRow)
         self.view.addSubview(thirdRow)
         self.view.addSubview(fourthRow)
+        self.view.addSubview(fifthRow)
         
         addConstraints(buttons: buttons1, containingView: topRow)
         addConstraints(buttons: buttons2, containingView: secondRow)
         addConstraints(buttons: buttons3, containingView: thirdRow)
         addConstraints(buttons: buttons4, containingView: fourthRow)
+        addConstraints(buttons: buttons5, containingView: fifthRow)
     }
     
     func createButtons(titles: [String]) -> [UIButton] {
@@ -78,10 +88,31 @@ class KeyboardViewController: UIInputViewController {
             button.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
             button.setTitleColor(UIColor.darkGray, for: [])
             button.addTarget(self, action:#selector(self.keyPressed), for: .touchUpInside)
-            //button.addTarget(self, action: Selector(("keyPressed:")), for: .touchUpInside)
-            //button.addTarget(self, action: Selector(("keyPressed:")), for: .touchUpInside)
             buttons.append(button)
         }
+        
+        return buttons
+    }
+    
+    func createButtonSpaceAndDelete(titles: [String]) -> [UIButton] {
+        
+        var buttons = [UIButton]()
+        
+        let button1 = UIButton(type: .custom) as UIButton
+        button1.setTitle(titles[1], for: .normal)
+        button1.translatesAutoresizingMaskIntoConstraints = false
+        button1.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
+        button1.setTitleColor(UIColor.darkGray, for: [])
+        button1.addTarget(self, action:#selector(self.spacePressed), for: .touchUpInside)
+        buttons.append(button1)
+        
+        let button2 = UIButton(type: .custom) as UIButton
+        button2.setTitle(titles[2], for: .normal)
+        button2.translatesAutoresizingMaskIntoConstraints = false
+        button2.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
+        button2.setTitleColor(UIColor.darkGray, for: [])
+        button2.addTarget(self, action:#selector(self.deletePressed), for: .touchUpInside)
+        buttons.append(button2)
         
         return buttons
     }
@@ -89,7 +120,16 @@ class KeyboardViewController: UIInputViewController {
     @objc func keyPressed(sender: AnyObject?) {
         let button = sender as! UIButton
         let title = button.title(for: .normal)
+        
         (textDocumentProxy as UIKeyInput).insertText(title!)
+    }
+    
+    @objc func spacePressed(sender: AnyObject?) {
+        (textDocumentProxy as UIKeyInput).insertText(" ")
+    }
+    
+    @objc func deletePressed(sender: AnyObject?) {
+        (textDocumentProxy as UIKeyInput).deleteBackward()
     }
     
     func addConstraints(buttons: [UIButton], containingView: UIView){
