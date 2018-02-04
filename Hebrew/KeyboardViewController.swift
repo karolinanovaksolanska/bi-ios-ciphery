@@ -12,11 +12,9 @@ class KeyboardViewController: UIInputViewController {
 
     @IBOutlet var nextKeyboardButton: UIButton!
     var hebrewView: UIView!
-   
+
     override func updateViewConstraints() {
         super.updateViewConstraints()
-        
-        // Add custom view sizing constraints here
     }
     
     override func viewDidLoad() {
@@ -24,7 +22,7 @@ class KeyboardViewController: UIInputViewController {
         
         let buttons1Titles = ["A", "B", "C", "D", "E", "F", "G"]
         let buttons1 = createButtons(titles: buttons1Titles)
-        let topRow = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
+        let topRow = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 45))
         
         for button in buttons1 {
             topRow.addSubview(button)
@@ -32,7 +30,7 @@ class KeyboardViewController: UIInputViewController {
         
         let buttons2Titles = ["H", "CH", "I", "J", "K", "L", "M"]
         let buttons2 = createButtons(titles: buttons2Titles)
-        let secondRow = UIView(frame: CGRect(x: 0, y: 40, width: 320, height: 40))
+        let secondRow = UIView(frame: CGRect(x: 0, y: 45, width: 320, height: 45))
         
         for button in buttons2 {
             secondRow.addSubview(button)
@@ -40,7 +38,7 @@ class KeyboardViewController: UIInputViewController {
         
         let buttons3Titles = ["N", "O", "P", "Q", "R", "S", "T"]
         let buttons3 = createButtons(titles: buttons3Titles)
-        let thirdRow = UIView(frame: CGRect(x: 0, y: 80, width: 320, height: 40))
+        let thirdRow = UIView(frame: CGRect(x: 0, y: 90, width: 320, height: 45))
         
         for button in buttons3 {
             thirdRow.addSubview(button)
@@ -48,7 +46,7 @@ class KeyboardViewController: UIInputViewController {
         
         let buttons4Titles = ["U", "V", "W", "X", "Y", "Z"]
         let buttons4 = createButtons(titles: buttons4Titles)
-        let fourthRow = UIView(frame: CGRect(x: 0, y: 120, width: 320, height: 40))
+        let fourthRow = UIView(frame: CGRect(x: 0, y: 135, width: 320, height: 45))
         
         for button in buttons4 {
             fourthRow.addSubview(button)
@@ -56,7 +54,7 @@ class KeyboardViewController: UIInputViewController {
         
         let buttons5Titles = ["----", "< Delete"]
         let buttons5 = createButtonSpaceAndDelete(titles: buttons5Titles)
-        let fifthRow = UIView(frame: CGRect(x: 0, y: 160, width: 320, height: 40))
+        let fifthRow = UIView(frame: CGRect(x: 0, y: 180, width: 320, height: 40))
         
         for button in buttons5 {
             fifthRow.addSubview(button)
@@ -96,18 +94,28 @@ class KeyboardViewController: UIInputViewController {
     
     func createButtonSpaceAndDelete(titles: [String]) -> [UIButton] {
         
-        var buttons = [UIButton]()
+         var buttons = [UIButton]()
         
         let button1 = UIButton(type: .custom) as UIButton
-        button1.setTitle(titles[1], for: .normal)
+        let image1 = UIImage(named: "world") as UIImage!
+        button1.setImage(image1, for: .normal)
         button1.translatesAutoresizingMaskIntoConstraints = false
         button1.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
         button1.setTitleColor(UIColor.darkGray, for: [])
-        button1.addTarget(self, action:#selector(self.spacePressed), for: .touchUpInside)
+        button1.addTarget(self, action:#selector(self.nextKeyboardPressed), for: .touchUpInside)
+        button1.contentMode = .scaleAspectFit
         buttons.append(button1)
         
+        let button3 = UIButton(type: .custom) as UIButton
+        button3.setTitle("Done", for: .normal)
+        button3.translatesAutoresizingMaskIntoConstraints = false
+        button3.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
+        button3.setTitleColor(UIColor.darkGray, for: [])
+        button3.addTarget(self, action:#selector(self.doneButtonAction), for: .touchUpInside)
+        buttons.append(button3)
+        
         let button2 = UIButton(type: .custom) as UIButton
-        button2.setTitle(titles[2], for: .normal)
+        button2.setTitle(titles.last, for: .normal)
         button2.translatesAutoresizingMaskIntoConstraints = false
         button2.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
         button2.setTitleColor(UIColor.darkGray, for: [])
@@ -120,12 +128,17 @@ class KeyboardViewController: UIInputViewController {
     @objc func keyPressed(sender: AnyObject?) {
         let button = sender as! UIButton
         let title = button.title(for: .normal)
-        
         (textDocumentProxy as UIKeyInput).insertText(title!)
     }
     
-    @objc func spacePressed(sender: AnyObject?) {
-        (textDocumentProxy as UIKeyInput).insertText(" ")
+    @objc func doneButtonAction(sender: AnyObject?)
+    {
+        self.dismissKeyboard()
+    }
+    
+    @objc func nextKeyboardPressed(sender: AnyObject?)
+    {
+        self.advanceToNextInputMode()
     }
     
     @objc func deletePressed(sender: AnyObject?) {
@@ -175,21 +188,4 @@ class KeyboardViewController: UIInputViewController {
         // Dispose of any resources that can be recreated
     }
     
-    override func textWillChange(_ textInput: UITextInput?) {
-        // The app is about to change the document's contents. Perform any preparation here.
-    }
-    
-    override func textDidChange(_ textInput: UITextInput?) {
-        // The app has just changed the document's contents, the document context has been updated.
-        
-       /* var textColor: UIColor
-        let proxy = self.textDocumentProxy
-        if proxy.keyboardAppearance == UIKeyboardAppearance.dark {
-            textColor = UIColor.white
-        } else {
-            textColor = UIColor.black
-        }
-        self.nextKeyboardButton.setTitleColor(textColor, for: [])*/
-    }
-
 }

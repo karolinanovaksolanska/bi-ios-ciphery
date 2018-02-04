@@ -13,26 +13,55 @@ import CoreLocation
 import MagicalRecord
 import Firebase
 
-class TexttoCipherController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+class TexttoCipherController: UIViewController, UITextViewDelegate, CLLocationManagerDelegate, MKMapViewDelegate {
 
-    weak var mapView: MKMapView!
+    let scrollView: UIScrollView = {
+        let v = UIScrollView()
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.backgroundColor = .cyan
+        return v
+    }()
+
     var locationManager: CLLocationManager!
     var dataManager = DataManager()
-    var data = [AnyObject]()
+    var data = "something"
     var ref: DatabaseReference!
     var pointAnnotation:CustomPointAnnotation!
+    var lastX = 0
+    var lastY = 0
+    var lastLength = 1
+    var activeField: UITextField?
     
-    weak var textField1: UITextField!
+    weak var sampleTextField: UITextView!
+
+    @IBAction func doneBtnFromKeyboardClicked (sender: Any) {
+        print("Done Button Clicked.")
+        //Hide Keyboard by endEditing or Anything you want.
+        self.view.endEditing(true)
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        return true
+    }
     
     override func loadView() {
         super.loadView()
+        
         view.backgroundColor = .white
+        self.view.addSubview(scrollView)
         
-        let enterText = UILabel(frame: CGRect(x: 20, y: 20, width: self.view.frame.width - 40, height: 30))
-        enterText.text = "Enter your text here:"
-        view.addSubview(enterText)
+        // constrain the scroll view to 8-pts on each side
+        scrollView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 8.0).isActive = true
+        scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 8.0).isActive = true
+        scrollView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -8.0).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -8.0).isActive = true
+        let thisText = UILabel(frame: CGRect(x: 20, y: (self.view.frame.height/2) - 10, width: self.view.frame.width - 40, height: 30))
+        thisText.text = "Translation here:"
+        let enterText = UILabel(frame: CGRect(x: 20, y: 100, width: self.view.frame.width - 40, height: 30))
+        enterText.text = "Translation here:"
+        scrollView.addSubview(enterText)
         
-        let sampleTextField = UITextView(frame: CGRect(x: 20, y: 50, width: self.view.frame.width - 40, height: (self.view.frame.height/2) - 100))
+        let sampleTextField = UITextView(frame: CGRect(x: 20, y: (self.view.frame.height/2) + 30, width: self.view.frame.width - 40, height: (self.view.frame.height/2) - 150))
         //sampleTextField.font = UIFont.systemFont(ofSize: 15)
         //sampleTextField.borderStyle = UITextBorderStyle.roundedRect
         sampleTextField.layer.borderColor = UIColor.gray.cgColor
@@ -41,10 +70,60 @@ class TexttoCipherController: UIViewController, CLLocationManagerDelegate, MKMap
         sampleTextField.textAlignment = NSTextAlignment.justified
         sampleTextField.autocorrectionType = UITextAutocorrectionType.no
         sampleTextField.returnKeyType = UIReturnKeyType.done
+        self.sampleTextField = sampleTextField
+        self.sampleTextField.delegate = self
         //sampleTextField.clearButtonMode = UITextFieldViewMode.whileEditing;
         //sampleTextField.contentVerticalAlignment = UIControlContentVerticalAlignment.center
-        view.addSubview(sampleTextField)
+        scrollView.addSubview(sampleTextField)
         
+    }
+    
+    func textViewDidChange(_ textView: UITextView) { //Handle the text changes here
+        var myString = textView.text! as NSString
+        if (myString.length > 2 && myString.substring(from: myString.length-1) == " "){
+            if CGFloat(self.lastX) >= (self.view.frame.width - 30){
+                self.lastX = 0
+                self.lastY += 30
+            } else {
+                self.lastX += 30
+            }
+            self.lastLength = myString.length + 1
+        } else {
+            if((myString.length + 1) <= self.lastLength){
+                self.lastLength -= 1
+                if let viewWithTag = self.view.viewWithTag(self.lastLength) {
+                    print("Tag " + String(self.lastLength))
+                    viewWithTag.removeFromSuperview()
+                    if self.lastX == 0 {
+                        self.lastX = 0
+                        self.lastY -= 30
+                    } else {
+                        self.lastX -= 30
+                    }
+                }
+                else {
+                    print("tag not found")
+                }
+                
+            } else {
+                let newImage = UIImage(named: myString.substring(from: myString.length-1)) as UIImage!
+                let imageView = UIImageView(image: newImage!)
+                imageView.frame = CGRect(x: self.lastX, y: self.lastY, width: 30, height: 30)
+                imageView.tag = self.lastLength
+                print("Tag " + String(self.lastLength) + " " + myString.substring(from: myString.length-1))
+
+                if CGFloat(self.lastX) >= (self.view.frame.width - 30){
+                    self.lastX = 0
+                    self.lastY += 30
+                } else {
+                    self.lastX += 30
+                }
+                self.lastLength = myString.length + 1
+            
+                scrollView.addSubview(imageView)
+            }
+        }
+        print(textView.text) //the textView parameter is the textView where text was changed
     }
     
     override func viewDidLoad() {
@@ -52,149 +131,45 @@ class TexttoCipherController: UIViewController, CLLocationManagerDelegate, MKMap
         super.viewDidLoad()
         
         self.title = "text -> cipher"
-        /* locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization() // nice pod for requesting permissions - https://github.com/nickoneill/PermissionScope
+        self.hideKeyboard()
         
-        mapView.delegate = self
-        
-        mapView.removeAnnotations(mapView.annotations)
-        
-        let locations = self.data
-        // let predicate = NSPredicate(format: "date > %@ AND title == 'ahoj'", Date()) // just example
-        // let filteredLocations = FavoriteLocation.mr_findAllSorted(by: "title", ascending: true, with: predicate)
-        
-        locations.forEach { location in
-            let annotation = MKPointAnnotation()
-            if let lat = location["lat"] as? Double, let lon = location["lon"] as? Double{
-                annotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-                mapView.addAnnotation(annotation)
-            }
-        }*/
-        
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        /*dataManager.getPins { [weak self] pins in
-            self?.data = pins
-            self?.locationManager = CLLocationManager()
-            self?.locationManager.delegate = self
-            self?.locationManager.requestWhenInUseAuthorization() // nice pod for requesting permissions - https://github.com/nickoneill/PermissionScope
-            
-            self?.mapView.delegate = self
-            
-            self?.mapView.removeAnnotations((self?.mapView.annotations)!)
-            
-            let locations = self?.data
-            // let predicate = NSPredicate(format: "date > %@ AND title == 'ahoj'", Date()) // just example
-            // let filteredLocations = FavoriteLocation.mr_findAllSorted(by: "title", ascending: true, with: predicate)
-            
-            for location in locations! {
-                let annotation = CustomPointAnnotation()
-                if let lat = location["lat"] as? Double, let lon = location["lon"] as? Double, let time = location["time"] as? Double, let username = location["username"] as? String, let gender = location["gender"] as? String {
-                    if gender != "male" && gender != "female" && gender != "unknown" {
-                        continue
-                    }
-                    let formatter = DateFormatter()
-                    // initially set the format based on your datepicker date
-                    formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                    let myString = formatter.string(from: Date(timeIntervalSince1970: TimeInterval(time / 1000)))
-                    annotation.title = username
-                    annotation.subtitle = myString
-                    
-                    annotation.gender = gender
-                    annotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-                    self?.mapView.addAnnotation(annotation)
-                }
-            }
-        }*/
+       
+    }
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        let scrollPoint : CGPoint = CGPoint.init(x:0, y:textView.frame.origin.y)
+        self.scrollView.setContentOffset(scrollPoint, animated: true)
     }
     
-    let reuseIdentifier = "reuseIdentifier"
-    
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        
-        if annotation is MKUserLocation {
-            return nil
-        }
-        
-        let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier) ?? MKAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
-    
-        let customPointAnnotation = annotation as! CustomPointAnnotation
-        
-        if customPointAnnotation.gender == "male" {
-            
-        } else if customPointAnnotation.gender == "female" {
-            
-        } else {
-            annotationView.image = #imageLiteral(resourceName: "unknown")
-        }
-        annotationView.canShowCallout = true
-        
-        let button = UIButton(type: .detailDisclosure)
-        annotationView.rightCalloutAccessoryView = button
-        
-        //annotationView.detailCalloutAccessoryView = UIImageView(image: #imageLiteral(resourceName: "pin"))
-        
-        annotationView.isDraggable = true // that's nonsense here of course 😏 - just for example
-        
-        return annotationView
+    func textViewDidEndEditing(_ textView: UITextView) {
+        self.scrollView.setContentOffset(CGPoint.zero, animated: true)
     }
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .authorizedWhenInUse {
-            mapView.showsUserLocation = true
-            mapView.userTrackingMode = .follow
-            
-            locationManager.startUpdatingLocation() // we should also stop it somewhere!
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations.last! // we are sure we have at least one location there
-        print(location)
-        
-        let geocoder = CLGeocoder()
-        geocoder.reverseGeocodeLocation(location) { [weak self] (placemarks, error) in
-            guard let placemark = placemarks?.last, let street = placemark.thoroughfare, let city = placemark.locality else {
-                self?.navigationItem.title = "Address not found"
-                return
-            }
-            
-            self?.navigationItem.title = "\(city), \(street)"
-        }
-        
-    }
-    
-
-//    let locations = [
-//        ["lat": 50.10155117, "lon": 14.50131164],
-//        ["lat": 50.04845155, "lon": 14.40643163],
-//        ["lat": 50.01436603, "lon": 14.48202576],
-//        ["lat": 50.09773545, "lon": 14.42862526],
-//        ["lat": 50.02386574, "lon": 14.418157],
-//        ["lat": 50.10891206, "lon": 14.50023615],
-//        ["lat": 50.13137991, "lon": 14.43188124],
-//        ["lat": 50.03085971, "lon": 14.43437316],
-//        ["lat": 50.05523586, "lon": 14.36531867],
-//        ["lat": 50.12467219, "lon": 14.39459484],
-//        ["lat": 50.00616185, "lon": 14.41959398],
-//        ["lat": 50.06693629, "lon": 14.43925259],
-//        ["lat": 50.08936261, "lon": 14.53516745],
-//        ["lat": 50.03396537, "lon": 14.48803967],
-//        ["lat": 50.06252636, "lon": 14.49942098],
-//        ["lat": 50.01692711, "lon": 14.37874073],
-//        ["lat": 50.07238541, "lon": 14.37937722],
-//        ["lat": 50.02807288, "lon": 14.51289626],
-//        ["lat": 50.0276592, "lon": 14.48751812],
-//        ["lat": 50.1340302, "lon": 14.45877785]
-//    ]
-    
 }
 
 
-
-
+extension UIViewController
+{
+    func hideKeyboard()
+    {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(UIViewController.dismissKeyboard))
+        
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard()
+    {
+        view.endEditing(true)
+    }
+}
 
 
