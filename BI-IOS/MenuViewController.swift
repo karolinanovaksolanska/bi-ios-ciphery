@@ -11,43 +11,24 @@ import UIKit
 import CoreLocation
 
 class MenuViewController : UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-    
-    weak var ciphertotextButton: UIButton!
-    weak var sampleTextField: UITextField!
-    
-    weak var cipTextSwitch: UISwitch!
-    weak var femaleSwitch: UISwitch!
-    weak var unknownSwitch: UISwitch!
-    
-    weak var textField1: UITextField!
-    
-    
-    var dataManager = DataManager()
+
     weak var makeReferralScroll: UIScrollView!
     weak var userTitleUITextView: UITextField!
-    let locationManager = CLLocationManager()
-    var userLatitude:CLLocationDegrees! = 0
-    var userLongitude:CLLocationDegrees! = 0
     
     weak var picker = UIPickerView()
+    weak var ciphertotextButton = UIButton()
+    weak var textToCipherButton = UIButton()
     
-    var pickerData: [String] = ["Morse code", "Caesar", "Snail", "Spider web", "Hebrew"]
+    var pickerData: [String] = ["Morse code", "Caesar", "Hebrew"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        // Connect data:
         self.picker?.delegate = self
         self.picker?.dataSource = self
-        
-        // Input data into the Array:
-       // pickerData = ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6"]
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     // The number of columns of data
@@ -63,9 +44,7 @@ class MenuViewController : UIViewController, UIPickerViewDelegate, UIPickerViewD
         return pickerData[row]
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
-    {
-    }
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){}
     
     override func loadView() {
         super.loadView();
@@ -73,71 +52,32 @@ class MenuViewController : UIViewController, UIPickerViewDelegate, UIPickerViewD
         view.backgroundColor = .white
     
         self.title = "menu"
-
-        /*let sampleTextField = UITextField(frame: CGRect(x: 40, y: 30, width: self.view.frame.width - 80, height: 100))
-        sampleTextField.placeholder = "Enter Username here"
-        sampleTextField.font = UIFont.systemFont(ofSize: 15)
-        sampleTextField.borderStyle = UITextBorderStyle.roundedRect
-        sampleTextField.autocorrectionType = UITextAutocorrectionType.no
-        sampleTextField.keyboardType = UIKeyboardType.default
-        sampleTextField.returnKeyType = UIReturnKeyType.done
-        sampleTextField.clearButtonMode = UITextFieldViewMode.whileEditing;
-        sampleTextField.contentVerticalAlignment = UIControlContentVerticalAlignment.center
-        view.addSubview(sampleTextField)*/
-        
-        let cipTextSwitch = UISwitch(frame: CGRect(x: (self.view.frame.width - 40)/2, y: 170, width: 20, height: 50))
-        view.addSubview(cipTextSwitch)
-        
-        let switchLabelDecrypt = UILabel(frame: CGRect(x: ((self.view.frame.width - 40)/2) - 95, y: 160, width: 150, height: 50))
-        switchLabelDecrypt.text = "decrypt"
-        view.addSubview(switchLabelDecrypt)
-
-        let switchLabelEncrypt = UILabel(frame: CGRect(x: ((self.view.frame.width - 40)/2) + 80, y: 160, width: 150, height: 50))
-        switchLabelEncrypt.text = "encrypt"
-        view.addSubview(switchLabelEncrypt)
-        
-        /*
-        let femaleSwitch = UISwitch(frame: CGRect(x: 40, y: 210, width: 50, height: 50))
-        view.addSubview(femaleSwitch)
-        
-        let switchLabelFemale = UILabel(frame: CGRect(x: 100, y: 210, width: 100, height: 50))
-        switchLabelFemale.text = "Female"
-        view.addSubview(switchLabelFemale)
-
-        
-        let unknownSwitch = UISwitch(frame: CGRect(x: 40, y: 250, width: 50, height: 50))
-        view.addSubview(unknownSwitch)
-        
-        let switchLabelUnknown = UILabel(frame: CGRect(x: 100, y: 250, width: 100, height: 50))
-        switchLabelUnknown.text = "Unknown"
-        view.addSubview(switchLabelUnknown)
-        */
         
         let cipherLabel = UILabel(frame: CGRect(x: 10, y: 5, width: self.view.frame.width - 20, height: 50))
         cipherLabel.text = "Cipher type:"
         view.addSubview(cipherLabel)
-        /*let ciphertotextButton = UIButton(frame: CGRect(x: 0, y: 10, width: self.view.frame.width, height: 50))
-        ciphertotextButton.setTitle("Choose cipher", for: .normal)
-        ciphertotextButton.setTitleColor(.white, for: .normal)
-        ciphertotextButton.backgroundColor = UIColor(rgb: 0x06BEE1)
-        view.addSubview(ciphertotextButton)*/
         
         let cipherPicker = UIPickerView(frame: CGRect(x: 0, y: 10, width: self.view.frame.width, height: 150))
         view.addSubview(cipherPicker)
         
-       // self.sampleTextField = sampleTextField
-        //self.ciphertotextButton = ciphertotextButton
+        let ciphertotextButton = UIButton(frame: CGRect(x: 0, y: 200, width: self.view.frame.width, height: 50))
+        ciphertotextButton.setTitle("Encrypt", for: .normal)
+        ciphertotextButton.setTitleColor(.white, for: .normal)
+        ciphertotextButton.backgroundColor = UIColor(rgb: 0x06BEE1)
+        ciphertotextButton.addTarget(self, action:#selector(self.ciphertotextKeyPressed), for: .touchUpInside)
+        view.addSubview(ciphertotextButton)
+        
+        let textToCipherButton = UIButton(frame: CGRect(x: 0, y: 270, width: self.view.frame.width, height: 50))
+        textToCipherButton.setTitle("Decrypt", for: .normal)
+        textToCipherButton.setTitleColor(.white, for: .normal)
+        textToCipherButton.backgroundColor = UIColor(rgb: 0x06BEE1)
+        textToCipherButton.addTarget(self, action:#selector(self.textToCipherKeyPressed), for: .touchUpInside)
+        view.addSubview(textToCipherButton)
+        
         self.picker = cipherPicker
-        self.cipTextSwitch = cipTextSwitch
-        /*self.femaleSwitch = femaleSwitch
-        self.unknownSwitch = unknownSwitch
-        
-        
-        
-        unknownSwitch.addTarget(self, action: #selector(unknownChanged), for: UIControlEvents.valueChanged)
-        femaleSwitch.addTarget(self, action: #selector(femaleChanged), for: UIControlEvents.valueChanged)
-        maleSwitch.addTarget(self, action: #selector(maleChanged), for: UIControlEvents.valueChanged)
-        maleSwitch.setOn(true, animated: true)*/
+        self.ciphertotextButton = ciphertotextButton
+        self.textToCipherButton = textToCipherButton
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -148,53 +88,31 @@ class MenuViewController : UIViewController, UIPickerViewDelegate, UIPickerViewD
         super.viewDidAppear(animated)
     }
     
-    
-    @objc func maleChanged(maleSwitch: UISwitch) {
-        if maleSwitch.isOn {
-            femaleSwitch.setOn(false, animated: true)
-            unknownSwitch.setOn(false, animated: true)
-        } else {
-            femaleSwitch.setOn(true, animated: true)
-            
+    @objc func ciphertotextKeyPressed(sender: AnyObject?) {
+        let selected = (self.picker?.selectedRow(inComponent: 0))!
+        switch selected {
+        case 0:
+            let morseCodeController = UINavigationController(rootViewController: MorseCodeEncryptController())
+            self.present(morseCodeController, animated: true, completion: nil)
+        case 1:
+            let caesarController = UINavigationController(rootViewController: CaesarEncryptController())
+            self.present(caesarController, animated: true, completion: nil)
+        case 2:
+            let hebrewController = UINavigationController(rootViewController: HebrewEcryptController())
+            self.present(hebrewController, animated: true, completion: nil)
+        default:
+            let morseCodeController = UINavigationController(rootViewController: MorseCodeEncryptController())
+            self.present(morseCodeController, animated: true, completion: nil)
         }
-    }
-    
-    @objc func femaleChanged(femaleSwitch: UISwitch) {
-        if femaleSwitch.isOn {
-            //maleSwitch.setOn(false, animated: true)
-            unknownSwitch.setOn(false, animated: true)
-           
-        } else {
-            unknownSwitch.setOn(true, animated: true)
-            
-        }
-    }
-    
-    @objc func unknownChanged(unknownSwitch: UISwitch) {
-        if unknownSwitch.isOn {
-            //maleSwitch.setOn(false, animated: true)
-            femaleSwitch.setOn(false, animated: true)
-            
-        } else {
-            //maleSwitch.setOn(true, animated: true)
-            
-        }
-    }
-    
-    @objc func pushButtonTapped(_ sender: UIButton) {
         
-        let username: String = sampleTextField.text!
-        if username != "" {
-           /* dataManager.addPin(username: username, gender: self.gender, lat: self.userLatitude, lon: self.userLongitude) { [weak self] pin in
-                print(pin)
-                navigationController?.pushViewController(TableViewController(), animated: true)
-            }*/
-        } else {
-            let alert = UIAlertController(title: "Missing username", message: "Please fill in username before sending.", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }
+
     }
+    
+    @objc func textToCipherKeyPressed(sender: AnyObject?) {
+        let selected = self.pickerData[(self.picker?.selectedRow(inComponent: 0))!]
+        
+    }
+    
 }
 
 

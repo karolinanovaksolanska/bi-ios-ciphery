@@ -15,29 +15,12 @@ import Firebase
 
 class CiphertoTextController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
 
-    weak var mapView: MKMapView!
-    var locationManager: CLLocationManager!
-    var dataManager = DataManager()
-    var data = [AnyObject]()
-    var ref: DatabaseReference!
-    var pointAnnotation:CustomPointAnnotation!
     var sampleTextField: UITextView!
     var currentLanguage = "hebrew"
-    
-    //weak var textField1: UITextView!
     
     override func loadView() {
         super.loadView()
         view.backgroundColor = .white
-        
-        /*ref = Database.database().reference()
-        let mapView = MKMapView()
-        view.addSubview(mapView)
-        mapView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        self.mapView = mapView*/
-        
     }
     
     override func viewDidLoad() {
@@ -105,77 +88,10 @@ class CiphertoTextController: UIViewController, CLLocationManagerDelegate, MKMap
         view.addSubview(pushButton)*/
         
         self.sampleTextField = sampleTextField
-        /*self.pushButton = pushButton
-        self.maleSwitch = maleSwitch
-        self.femaleSwitch = femaleSwitch
-        self.unknownSwitch = unknownSwitch
-        
-        
-        
-        unknownSwitch.addTarget(self, action: #selector(unknownChanged), for: UIControlEvents.valueChanged)
-        femaleSwitch.addTarget(self, action: #selector(femaleChanged), for: UIControlEvents.valueChanged)
-        maleSwitch.addTarget(self, action: #selector(maleChanged), for: UIControlEvents.valueChanged)
-        maleSwitch.setOn(true, animated: true)*/
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-    }
-    
-    let reuseIdentifier = "reuseIdentifier"
-    
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        
-        if annotation is MKUserLocation {
-            return nil
-        }
-        
-        let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier) ?? MKAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
-    
-        let customPointAnnotation = annotation as! CustomPointAnnotation
-        
-        if customPointAnnotation.gender == "male" {
-            
-        } else if customPointAnnotation.gender == "female" {
-            
-        } else {
-            annotationView.image = #imageLiteral(resourceName: "unknown")
-        }
-        annotationView.canShowCallout = true
-        
-        let button = UIButton(type: .detailDisclosure)
-        annotationView.rightCalloutAccessoryView = button
-        
-        //annotationView.detailCalloutAccessoryView = UIImageView(image: #imageLiteral(resourceName: "pin"))
-        
-        annotationView.isDraggable = true // that's nonsense here of course 😏 - just for example
-        
-        return annotationView
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .authorizedWhenInUse {
-            mapView.showsUserLocation = true
-            mapView.userTrackingMode = .follow
-            
-            locationManager.startUpdatingLocation() // we should also stop it somewhere!
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations.last! // we are sure we have at least one location there
-        print(location)
-        
-        let geocoder = CLGeocoder()
-        geocoder.reverseGeocodeLocation(location) { [weak self] (placemarks, error) in
-            guard let placemark = placemarks?.last, let street = placemark.thoroughfare, let city = placemark.locality else {
-                self?.navigationItem.title = "Address not found"
-                return
-            }
-            
-            self?.navigationItem.title = "\(city), \(street)"
-        }
-        
     }
     
 }

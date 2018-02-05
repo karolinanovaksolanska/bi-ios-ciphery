@@ -8,19 +8,13 @@
 
 import UIKit
 import MagicalRecord
-import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var ref: DatabaseReference!
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        FirebaseApp.configure()
-        
-        MagicalRecord.setupAutoMigratingCoreDataStack()
         
         UINavigationBar.appearance().barTintColor = UIColor(rgb: 0x1768AC)
         UITabBar.appearance().barTintColor = UIColor(rgb: 0x1768AC)
@@ -51,8 +45,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CTTController.tabBarItem.image = #imageLiteral(resourceName: "unlock")
         CTTController.title = "cipher -> text"
         
+        let MorseCodeController = UINavigationController(rootViewController: MorseCodeEncryptController())
+        MorseCodeController.title = "Encrypt to Morse code"
+        
         let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [menuController,UINavigationController(rootViewController: TexttoCipherController())]
+        tabBarController.viewControllers = [menuController]
         
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()

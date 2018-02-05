@@ -21,24 +21,21 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		2314AEB41FF4F92800A23AB9 /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2314AEB31FF4F92800A23AB9 /* Pin.swift */; };
+		23034127202748DF003F0762 /* MorseCodeEncryptController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23034126202748DF003F0762 /* MorseCodeEncryptController.swift */; };
+		2303412B20279B20003F0762 /* MorseCodeDecryptController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2303412820279B20003F0762 /* MorseCodeDecryptController.swift */; };
+		2303412C20279B20003F0762 /* CaesarEncryptController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2303412920279B20003F0762 /* CaesarEncryptController.swift */; };
+		2303412D20279B20003F0762 /* HebrewEncryptController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2303412A20279B20003F0762 /* HebrewEncryptController.swift */; };
 		23362E83201DCFF000BAD92E /* TexttoCipherController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23362E82201DCFF000BAD92E /* TexttoCipherController.swift */; };
 		23362E86201DD44500BAD92E /* CiphertoTextController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23362E84201DD44400BAD92E /* CiphertoTextController.swift */; };
 		23362E87201DD44500BAD92E /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23362E85201DD44500BAD92E /* MenuViewController.swift */; };
 		23362E93201EE4B700BAD92E /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23362E92201EE4B700BAD92E /* KeyboardViewController.swift */; };
 		23362E97201EE4B700BAD92E /* Hebrew.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 23362E90201EE4B700BAD92E /* Hebrew.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		23362EB4201F580C00BAD92E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23362EB3201F580C00BAD92E /* Assets.xcassets */; };
-		236D73461FF79F1E00ADC7D6 /* CustomPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236D73451FF79F1E00ADC7D6 /* CustomPointAnnotation.swift */; };
 		7FAAAE85204BEB9ABDDF7A30 /* Pods_BI_IOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB8D39B905B12A8CCFB85EC /* Pods_BI_IOS.framework */; };
-		881135DB1FC409B2009A0B29 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 881135D91FC409B2009A0B29 /* Model.xcdatamodeld */; };
-		881135E71FC40CEE009A0B29 /* _FavoriteLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881135E31FC40CEE009A0B29 /* _FavoriteLocation.swift */; };
-		881135E81FC40CEE009A0B29 /* _User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881135E41FC40CEE009A0B29 /* _User.swift */; };
-		88A9D5C81FDEEC4E0010EFCD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88A9D5C71FDEEC4E0010EFCD /* GoogleService-Info.plist */; };
 		88B8670D1F8B8E1A00345E71 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B8670C1F8B8E1A00345E71 /* AppDelegate.swift */; };
 		88B867121F8B8E1A00345E71 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88B867101F8B8E1A00345E71 /* Main.storyboard */; };
 		88B867141F8B8E1A00345E71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88B867131F8B8E1A00345E71 /* Assets.xcassets */; };
 		88B867171F8B8E1A00345E71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88B867151F8B8E1A00345E71 /* LaunchScreen.storyboard */; };
-		B4F1658C1FB0E6FE00272E0C /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F1658B1FB0E6FE00272E0C /* DataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,7 +65,10 @@
 /* Begin PBXFileReference section */
 		2303410D20248C86003F0762 /* Hebrew.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Hebrew.entitlements; sourceTree = "<group>"; };
 		2303410E20248C8C003F0762 /* BI-IOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BI-IOS.entitlements"; sourceTree = "<group>"; };
-		2314AEB31FF4F92800A23AB9 /* Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
+		23034126202748DF003F0762 /* MorseCodeEncryptController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorseCodeEncryptController.swift; sourceTree = "<group>"; };
+		2303412820279B20003F0762 /* MorseCodeDecryptController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorseCodeDecryptController.swift; sourceTree = "<group>"; };
+		2303412920279B20003F0762 /* CaesarEncryptController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaesarEncryptController.swift; sourceTree = "<group>"; };
+		2303412A20279B20003F0762 /* HebrewEncryptController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HebrewEncryptController.swift; sourceTree = "<group>"; };
 		23362E82201DCFF000BAD92E /* TexttoCipherController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TexttoCipherController.swift; path = "BI-IOS/TexttoCipherController.swift"; sourceTree = SOURCE_ROOT; };
 		23362E84201DD44400BAD92E /* CiphertoTextController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CiphertoTextController.swift; sourceTree = "<group>"; };
 		23362E85201DD44500BAD92E /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -76,12 +76,7 @@
 		23362E92201EE4B700BAD92E /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		23362E94201EE4B700BAD92E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		23362EB3201F580C00BAD92E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		236D73451FF79F1E00ADC7D6 /* CustomPointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPointAnnotation.swift; sourceTree = "<group>"; };
-		881135DA1FC409B2009A0B29 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		881135E31FC40CEE009A0B29 /* _FavoriteLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _FavoriteLocation.swift; sourceTree = "<group>"; };
-		881135E41FC40CEE009A0B29 /* _User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _User.swift; sourceTree = "<group>"; };
 		8812B5361FBAC71700DE8D70 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		88A9D5C71FDEEC4E0010EFCD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		88B867091F8B8E1A00345E71 /* BI-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BI-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		88B8670C1F8B8E1A00345E71 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88B867111F8B8E1A00345E71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -89,7 +84,6 @@
 		88B867161F8B8E1A00345E71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		88B867181F8B8E1A00345E71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0CD1D2425FC01BFA6FC7072 /* Pods-BI-IOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BI-IOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BI-IOS/Pods-BI-IOS.debug.xcconfig"; sourceTree = "<group>"; };
-		B4F1658B1FB0E6FE00272E0C /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		DFB8D39B905B12A8CCFB85EC /* Pods_BI_IOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BI_IOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9136B43AAF305E259334D01 /* Pods-BI-IOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BI-IOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-BI-IOS/Pods-BI-IOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -142,15 +136,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		881135E91FC40D1C009A0B29 /* dont touch this */ = {
-			isa = PBXGroup;
-			children = (
-				881135E31FC40CEE009A0B29 /* _FavoriteLocation.swift */,
-				881135E41FC40CEE009A0B29 /* _User.swift */,
-			);
-			path = "dont touch this";
-			sourceTree = "<group>";
-		};
 		88B867001F8B8E1A00345E71 = {
 			isa = PBXGroup;
 			children = (
@@ -175,8 +160,11 @@
 			isa = PBXGroup;
 			children = (
 				2303410E20248C8C003F0762 /* BI-IOS.entitlements */,
-				B4F1658E1FB0FDC600272E0C /* Model */,
+				2303412920279B20003F0762 /* CaesarEncryptController.swift */,
+				2303412A20279B20003F0762 /* HebrewEncryptController.swift */,
+				2303412820279B20003F0762 /* MorseCodeDecryptController.swift */,
 				88B8670C1F8B8E1A00345E71 /* AppDelegate.swift */,
+				23034126202748DF003F0762 /* MorseCodeEncryptController.swift */,
 				23362E84201DD44400BAD92E /* CiphertoTextController.swift */,
 				23362E85201DD44500BAD92E /* MenuViewController.swift */,
 				23362E82201DCFF000BAD92E /* TexttoCipherController.swift */,
@@ -184,21 +172,8 @@
 				88B867131F8B8E1A00345E71 /* Assets.xcassets */,
 				88B867151F8B8E1A00345E71 /* LaunchScreen.storyboard */,
 				88B867181F8B8E1A00345E71 /* Info.plist */,
-				88A9D5C71FDEEC4E0010EFCD /* GoogleService-Info.plist */,
-				B4F1658B1FB0E6FE00272E0C /* DataManager.swift */,
-				236D73451FF79F1E00ADC7D6 /* CustomPointAnnotation.swift */,
 			);
 			path = "BI-IOS";
-			sourceTree = "<group>";
-		};
-		B4F1658E1FB0FDC600272E0C /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				881135E91FC40D1C009A0B29 /* dont touch this */,
-				881135D91FC409B2009A0B29 /* Model.xcdatamodeld */,
-				2314AEB31FF4F92800A23AB9 /* Pin.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,7 +286,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				88B867171F8B8E1A00345E71 /* LaunchScreen.storyboard in Resources */,
-				88A9D5C81FDEEC4E0010EFCD /* GoogleService-Info.plist in Resources */,
 				88B867141F8B8E1A00345E71 /* Assets.xcassets in Resources */,
 				88B867121F8B8E1A00345E71 /* Main.storyboard in Resources */,
 			);
@@ -411,16 +385,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2314AEB41FF4F92800A23AB9 /* Pin.swift in Sources */,
 				23362E87201DD44500BAD92E /* MenuViewController.swift in Sources */,
-				B4F1658C1FB0E6FE00272E0C /* DataManager.swift in Sources */,
-				881135E81FC40CEE009A0B29 /* _User.swift in Sources */,
 				23362E83201DCFF000BAD92E /* TexttoCipherController.swift in Sources */,
-				881135E71FC40CEE009A0B29 /* _FavoriteLocation.swift in Sources */,
 				88B8670D1F8B8E1A00345E71 /* AppDelegate.swift in Sources */,
-				236D73461FF79F1E00ADC7D6 /* CustomPointAnnotation.swift in Sources */,
+				23034127202748DF003F0762 /* MorseCodeEncryptController.swift in Sources */,
+				2303412B20279B20003F0762 /* MorseCodeDecryptController.swift in Sources */,
 				23362E86201DD44500BAD92E /* CiphertoTextController.swift in Sources */,
-				881135DB1FC409B2009A0B29 /* Model.xcdatamodeld in Sources */,
+				2303412D20279B20003F0762 /* HebrewEncryptController.swift in Sources */,
+				2303412C20279B20003F0762 /* CaesarEncryptController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -695,19 +667,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		881135D91FC409B2009A0B29 /* Model.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				881135DA1FC409B2009A0B29 /* Model.xcdatamodel */,
-			);
-			currentVersion = 881135DA1FC409B2009A0B29 /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 88B867011F8B8E1A00345E71 /* Project object */;
 }
