@@ -25,12 +25,12 @@
 		2303412B20279B20003F0762 /* MorseCodeDecryptController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2303412820279B20003F0762 /* MorseCodeDecryptController.swift */; };
 		2303412C20279B20003F0762 /* CaesarEncryptController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2303412920279B20003F0762 /* CaesarEncryptController.swift */; };
 		2303412D20279B20003F0762 /* HebrewEncryptController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2303412A20279B20003F0762 /* HebrewEncryptController.swift */; };
-		23362E83201DCFF000BAD92E /* TexttoCipherController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23362E82201DCFF000BAD92E /* TexttoCipherController.swift */; };
-		23362E86201DD44500BAD92E /* CiphertoTextController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23362E84201DD44400BAD92E /* CiphertoTextController.swift */; };
 		23362E87201DD44500BAD92E /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23362E85201DD44500BAD92E /* MenuViewController.swift */; };
 		23362E93201EE4B700BAD92E /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23362E92201EE4B700BAD92E /* KeyboardViewController.swift */; };
 		23362E97201EE4B700BAD92E /* Hebrew.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 23362E90201EE4B700BAD92E /* Hebrew.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		23362EB4201F580C00BAD92E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23362EB3201F580C00BAD92E /* Assets.xcassets */; };
+		23EE47D62029FF780038F2DB /* CaesarDecryptController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EE47D42029FF770038F2DB /* CaesarDecryptController.swift */; };
+		23EE47D72029FF780038F2DB /* HebrewDecryptController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EE47D52029FF780038F2DB /* HebrewDecryptController.swift */; };
 		7FAAAE85204BEB9ABDDF7A30 /* Pods_BI_IOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB8D39B905B12A8CCFB85EC /* Pods_BI_IOS.framework */; };
 		88B8670D1F8B8E1A00345E71 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B8670C1F8B8E1A00345E71 /* AppDelegate.swift */; };
 		88B867121F8B8E1A00345E71 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88B867101F8B8E1A00345E71 /* Main.storyboard */; };
@@ -69,13 +69,13 @@
 		2303412820279B20003F0762 /* MorseCodeDecryptController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorseCodeDecryptController.swift; sourceTree = "<group>"; };
 		2303412920279B20003F0762 /* CaesarEncryptController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaesarEncryptController.swift; sourceTree = "<group>"; };
 		2303412A20279B20003F0762 /* HebrewEncryptController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HebrewEncryptController.swift; sourceTree = "<group>"; };
-		23362E82201DCFF000BAD92E /* TexttoCipherController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TexttoCipherController.swift; path = "BI-IOS/TexttoCipherController.swift"; sourceTree = SOURCE_ROOT; };
-		23362E84201DD44400BAD92E /* CiphertoTextController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CiphertoTextController.swift; sourceTree = "<group>"; };
 		23362E85201DD44500BAD92E /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		23362E90201EE4B700BAD92E /* Hebrew.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Hebrew.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		23362E92201EE4B700BAD92E /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		23362E94201EE4B700BAD92E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		23362EB3201F580C00BAD92E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		23EE47D42029FF770038F2DB /* CaesarDecryptController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaesarDecryptController.swift; sourceTree = "<group>"; };
+		23EE47D52029FF780038F2DB /* HebrewDecryptController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HebrewDecryptController.swift; sourceTree = "<group>"; };
 		8812B5361FBAC71700DE8D70 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		88B867091F8B8E1A00345E71 /* BI-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BI-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		88B8670C1F8B8E1A00345E71 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -159,15 +159,15 @@
 		88B8670B1F8B8E1A00345E71 /* BI-IOS */ = {
 			isa = PBXGroup;
 			children = (
+				23EE47D42029FF770038F2DB /* CaesarDecryptController.swift */,
+				23EE47D52029FF780038F2DB /* HebrewDecryptController.swift */,
 				2303410E20248C8C003F0762 /* BI-IOS.entitlements */,
 				2303412920279B20003F0762 /* CaesarEncryptController.swift */,
 				2303412A20279B20003F0762 /* HebrewEncryptController.swift */,
 				2303412820279B20003F0762 /* MorseCodeDecryptController.swift */,
 				88B8670C1F8B8E1A00345E71 /* AppDelegate.swift */,
 				23034126202748DF003F0762 /* MorseCodeEncryptController.swift */,
-				23362E84201DD44400BAD92E /* CiphertoTextController.swift */,
 				23362E85201DD44500BAD92E /* MenuViewController.swift */,
-				23362E82201DCFF000BAD92E /* TexttoCipherController.swift */,
 				88B867101F8B8E1A00345E71 /* Main.storyboard */,
 				88B867131F8B8E1A00345E71 /* Assets.xcassets */,
 				88B867151F8B8E1A00345E71 /* LaunchScreen.storyboard */,
@@ -302,6 +302,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-BI-IOS/Pods-BI-IOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/MagicalRecord/MagicalRecord.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
@@ -311,6 +317,12 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MagicalRecord.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
@@ -386,12 +398,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				23362E87201DD44500BAD92E /* MenuViewController.swift in Sources */,
-				23362E83201DCFF000BAD92E /* TexttoCipherController.swift in Sources */,
+				23EE47D62029FF780038F2DB /* CaesarDecryptController.swift in Sources */,
 				88B8670D1F8B8E1A00345E71 /* AppDelegate.swift in Sources */,
 				23034127202748DF003F0762 /* MorseCodeEncryptController.swift in Sources */,
 				2303412B20279B20003F0762 /* MorseCodeDecryptController.swift in Sources */,
-				23362E86201DD44500BAD92E /* CiphertoTextController.swift in Sources */,
 				2303412D20279B20003F0762 /* HebrewEncryptController.swift in Sources */,
+				23EE47D72029FF780038F2DB /* HebrewDecryptController.swift in Sources */,
 				2303412C20279B20003F0762 /* CaesarEncryptController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

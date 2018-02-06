@@ -104,15 +104,43 @@ class MenuViewController : UIViewController, UIPickerViewDelegate, UIPickerViewD
             let morseCodeController = UINavigationController(rootViewController: MorseCodeEncryptController())
             self.present(morseCodeController, animated: true, completion: nil)
         }
-        
-
     }
     
     @objc func textToCipherKeyPressed(sender: AnyObject?) {
-        let selected = self.pickerData[(self.picker?.selectedRow(inComponent: 0))!]
-        
+        let selected = (self.picker?.selectedRow(inComponent: 0))!
+        switch selected {
+        case 0:
+            let morseCodeController = UINavigationController(rootViewController: MorseCodeDecryptController())
+            self.present(morseCodeController, animated: true, completion: nil)
+        case 1:
+            let caesarController = UINavigationController(rootViewController: CaesarDecryptController())
+            self.present(caesarController, animated: true, completion: nil)
+        case 2:
+            let hebrewController = UINavigationController(rootViewController: HebrewDeryptController())
+            self.present(hebrewController, animated: true, completion: nil)
+        default:
+            let morseCodeController = UINavigationController(rootViewController: MorseCodeDecryptController())
+            self.present(morseCodeController, animated: true, completion: nil)
+        }
     }
     
+}
+
+extension UIViewController
+{
+    func hideKeyboard()
+    {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(UIViewController.dismissKeyboard))
+        
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard()
+    {
+        view.endEditing(true)
+    }
 }
 
 

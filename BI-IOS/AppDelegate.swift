@@ -8,6 +8,7 @@
 
 import UIKit
 import MagicalRecord
+import FacebookCore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -34,16 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         menuController.tabBarItem.title = "menu"
         menuController.tabBarItem.image = #imageLiteral(resourceName: "settings")
         menuController.title = "menu"
-        
-        let TTCController = TexttoCipherController()
-        TTCController.tabBarItem.title = "text -> cipher"
-        TTCController.tabBarItem.image = #imageLiteral(resourceName: "lock")
-        TTCController.title = "text -> cipher"
-        
-        let CTTController = CiphertoTextController()
-        CTTController.tabBarItem.title = "cipher -> text"
-        CTTController.tabBarItem.image = #imageLiteral(resourceName: "unlock")
-        CTTController.title = "cipher -> text"
+    
         
         let MorseCodeController = UINavigationController(rootViewController: MorseCodeEncryptController())
         MorseCodeController.title = "Encrypt to Morse code"
@@ -54,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
         
-        return true
+       return SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
     }
 
@@ -74,10 +66,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+         AppEventsLogger.activate(application)
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        return SDKApplicationDelegate.shared.application(app, open: url, options: options)
     }
 
 

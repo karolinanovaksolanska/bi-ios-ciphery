@@ -9,6 +9,7 @@ import SnapKit
 import CoreLocation
 import MagicalRecord
 import Firebase
+import FacebookShare
 
 class MorseCodeEncryptController: UIViewController, UITextViewDelegate {
     
@@ -80,7 +81,7 @@ class MorseCodeEncryptController: UIViewController, UITextViewDelegate {
         self.sampleTextField2.delegate = self
         scrollView.addSubview(sampleTextField2)
         
-        let menuButton = UIButton(frame: CGRect(x: -0.8, y:  self.view.frame.height - 115, width: self.view.frame.width + 1.6, height: 50))
+        let menuButton = UIButton(frame: CGRect(x: -0.8, y:  self.view.frame.height - 115, width: self.view.frame.width/2, height: 50))
         menuButton.setTitle("Menu", for: .normal)
         let image1 = #imageLiteral(resourceName: "settings")
         menuButton.setImage(image1, for: .normal)
@@ -90,6 +91,16 @@ class MorseCodeEncryptController: UIViewController, UITextViewDelegate {
         menuButton.imageView?.tintColor = UIColor.white
         menuButton.addTarget(self, action:#selector(self.menuPressed), for: .touchUpInside)
         view.addSubview(menuButton)
+        
+        let shareButton = UIButton(frame: CGRect(x: (self.view.frame.width/2)-0.8, y:  self.view.frame.height - 115, width: self.view.frame.width/2, height: 50))
+        let image2 = #imageLiteral(resourceName: "facebook")
+        shareButton.setImage(image2, for: .normal)
+        shareButton.setTitleColor(.white, for: .normal)
+        shareButton.tintColor = UIColor.white
+        shareButton.backgroundColor = UIColor(rgb: 0x1768AC)
+        shareButton.imageView?.tintColor = UIColor.white
+        shareButton.addTarget(self, action:#selector(self.shareIt), for: .touchUpInside)
+        view.addSubview(shareButton)
         
     }
     
@@ -107,9 +118,15 @@ class MorseCodeEncryptController: UIViewController, UITextViewDelegate {
                 self.lastLetter = ""
             }
         } else {
-            self.lastLength = myString.length + 1
-            self.sampleTextField2.text! += alfabet[myString.substring(from: myString.length-1)]!
-            self.lastLetter = alfabet[myString.substring(from: myString.length-1)]!
+        
+            if (myString.substring(from: myString.length-1) == "\n"){
+                self.sampleTextField2.text! += "\n"
+                self.lastLength = myString.length + 1
+            } else {
+                self.lastLength = myString.length + 1
+                self.sampleTextField2.text! += alfabet[myString.substring(from: myString.length-1)]!
+                self.lastLetter = alfabet[myString.substring(from: myString.length-1)]!
+            }
         }
        // print(textView.text)
     }
@@ -141,6 +158,24 @@ class MorseCodeEncryptController: UIViewController, UITextViewDelegate {
     @objc func menuPressed(sender: AnyObject?) {
         let menuController = UINavigationController(rootViewController: MenuViewController())
         self.present(menuController, animated: true, completion: nil)
+    }
+    
+    @objc func shareIt() -> Void {
+        let url = URL.init(string: "https://developers.facebook.com")
+        let smthing = sampleTextField2.text
+        let content = LinkShareContent(url: url!, title: smthing)
+        let shareDialog = ShareDialog(content: content)
+        shareDialog.mode = .native
+        shareDialog.failsOnInvalidData = true
+        shareDialog.completion = { result in
+            print(result)
+        }
+        
+        do {
+            try shareDialog.show()
+        } catch {
+            
+        }
     }
 }
 

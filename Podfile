@@ -11,5 +11,8 @@ target 'BI-IOS' do
   pod 'MagicalRecord', '~> 2.3'
   
   pod 'Firebase/Database', '~> 4.7'
+  pod 'FacebookCore'
+  pod 'FBSDKLoginKit'
+  pod 'FacebookShare'
   
 end

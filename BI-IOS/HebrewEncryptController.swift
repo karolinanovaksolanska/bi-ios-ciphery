@@ -120,6 +120,7 @@ class HebrewEcryptController: UIViewController, UITextViewDelegate {
                 }
                 
             } else {
+                print((myString.substring(from: myString.length-1)).uppercased())
                 let newImage = UIImage(named: (myString.substring(from: myString.length-1)).uppercased()) as UIImage!
                 let imageView = UIImageView(image: newImage!)
                 imageView.frame = CGRect(x: self.lastX, y: self.lastY, width: 30, height: 30)
@@ -142,7 +143,7 @@ class HebrewEcryptController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "text -> cipher"
+        self.title = "Hebrew Encrypt"
         self.hideKeyboard()
     }
     
